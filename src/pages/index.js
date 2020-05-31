@@ -3,13 +3,14 @@ import { graphql } from 'gatsby'
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Organization from '../components/organization'
 
 const IndexPage = props => {
-  console.log(props)
-  const org = process.env.GATSBY_GITHUB_ORG
+  const org = props.data.github.organization
   return (
-    <Layout org={org}>
-      <SEO title={`${org}'s repos`} />
+    <Layout org={org} buildDate={props.pathContext.currentDate}>
+      <SEO title={`${org.name}'s repos`} />
+      <Organization org={org} />
     </Layout>
   )
 }
@@ -22,6 +23,8 @@ export const query = graphql`
         description
         avatarUrl
         url
+        location
+        websiteUrl
         repositories (first: 100) {
           totalCount
           edges {

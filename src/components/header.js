@@ -9,9 +9,9 @@ import {
 
 const Header = ({ org }) => (
   <Navbar light sticky>
-    <Container fluid>
+    <Container>
       <div className="d-flex justify-content-between">
-        <NavbarBrand tag={Link} to="/">Github User: {org}</NavbarBrand>
+        <NavbarBrand tag={Link} to="/">{org}</NavbarBrand>
       </div>
     </Container>
   </Navbar>
