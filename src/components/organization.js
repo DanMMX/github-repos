@@ -22,13 +22,13 @@ const Organization = ({
     name,
     url,
     websiteUrl,
-    avatar,
+    avatarUrl,
     description,
     location,
   }
 }) => (
   <Card width="50%">
-    <CardImg top src={avatar} alt={name} />
+    <CardImg top src={avatarUrl} alt={name} />
     <CardBlock>
       <CardTitle>{name}</CardTitle>
       <CardSubtitle>
@@ -45,7 +45,7 @@ Organization.propTypes = {
   org: PropTypes.shape({
     name: PropTypes.string,
     url: PropTypes.string,
-    avatar: PropTypes.string,
+    avatarUrl: PropTypes.string,
     description: PropTypes.string,
     location: PropTypes.string,
   }).isRequired

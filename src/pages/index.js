@@ -8,7 +8,7 @@ import Organization from '../components/organization'
 const IndexPage = props => {
   const org = props.data.github.organization
   return (
-    <Layout org={org} buildDate={props.pathContext.currentDate}>
+    <Layout org={org} buildDate={props.pageContext.currentDate}>
       <SEO title={`${org.name}'s repos`} />
       <Organization org={org} />
     </Layout>
