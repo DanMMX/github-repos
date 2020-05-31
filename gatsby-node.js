@@ -5,3 +5,14 @@
  */
 
 // You can delete this file if you're not using it
+exports.onCreatePage = ({ page, actions }) => {
+  const { createPage, deletePage } = actions;
+
+  deletePage(page);
+  createPage({
+    ...page,
+    context: {
+      org: process.env.GATSBY_GITHUB_ORG
+    }
+  });
+};

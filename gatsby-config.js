@@ -1,3 +1,5 @@
+const fetch = require('node-fetch')
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -29,6 +31,20 @@ module.exports = {
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        typeName: "GitHub",
+        fieldName: "github",
+        url: "https://api.github.com/graphql",
+        headers: {
+          Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+          Accept: 'application/vnd.github.v4.idl',
+        },
+        // Additional options to pass to node-fetch
+        fetchOptions: {},
+      },
+    }
   ],
 }
