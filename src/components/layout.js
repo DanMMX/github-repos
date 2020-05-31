@@ -1,10 +1,3 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react"
 import PropTypes from "prop-types"
 import {
@@ -13,12 +6,11 @@ import {
 
 
 import Header from "./header"
-import "./layout.css"
 
 const Layout = ({ children, org, buildDate }) => {
   console.log(org)
   return (
-    <>
+    <div style={{ fontFamily: 'Lato' }}>
       <Header org={org.name} />
       <Container>
         {children}
@@ -27,10 +19,10 @@ const Layout = ({ children, org, buildDate }) => {
           {` `}
           <a href="https://www.gatsbyjs.org">Gatsby</a>
           <br />
-          Repos from {org.name}, information updated on {buildDate}
+          Repos from {org.name} Organization, information updated on {buildDate}
         </footer>
       </Container>
-    </>
+    </div>
   )
 }
 

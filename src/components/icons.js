@@ -4,6 +4,8 @@ import styled from 'styled-components'
 const SVG = styled.svg`
   width: 20px;
   height: 20px;
+  vertical-align: middle;
+  margin-right: 4px;
 `
 
 export const Star = () => (

@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { Github, Marker, Link as LinkIcon } from '../components/icons'
+import { Github, Marker, Link as LinkIcon } from './icons'
+import { colors } from './variables'
 
 const Card = styled.div`
   position: relative;
@@ -10,11 +11,15 @@ const Card = styled.div`
   width: 50%;
   border-width: 1px;
   border-style: solid;
-  border-color: rgba(0, 0, 0, 0.125);
+  border-color: ${colors.fadedGrey};
   border-image: initial;
   padding: 10px;
   box-sizing: border-box;
   align-items: center;
+  border-radius: 10px;
+  box-shadow: 1px 1px 4px ${colors.fadedGrey};
+  margin-bottom: 20px;
+  margin-top: 20px;
 `
 
 const CardImg = styled.img`
@@ -62,8 +67,8 @@ const Organization = ({
       <CardTitle>{name}</CardTitle>
       <CardSubtitle>
         <CardInfo as={Link} href={url} target="_blank"><Github /></CardInfo>
-        <CardInfo as={Link} href={websiteUrl} target="_blank"><LinkIcon /> {websiteUrl}</CardInfo>
-        <CardInfo><Marker /> {location}</CardInfo>
+        {websiteUrl && <CardInfo as={Link} href={websiteUrl} target="_blank"><LinkIcon />{websiteUrl}</CardInfo>}
+        <CardInfo><Marker />{location}</CardInfo>
       </CardSubtitle>
       <CardText>{description}</CardText>
     </CardBlock>
