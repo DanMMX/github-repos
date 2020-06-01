@@ -1,12 +1,11 @@
 import React from 'react'
 import { Container } from '@bootstrap-styled/v4'
+import { Organization as OrgType } from './organization'
 
 import Header from './header'
 
 interface Props {
-  org: {
-    name: string
-  },
+  org: Pick<OrgType, 'name'>,
   buildDate: string
 }
 

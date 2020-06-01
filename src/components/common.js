@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Badge } from '@bootstrap-styled/v4'
 
 import { colors } from './variables'
 
@@ -11,7 +12,7 @@ export const CardTitle = styled.div`
 
 export const Card = styled(({ isOrg, ...rest }) => <div {...rest} />)`
   position: relative;
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   width: ${props => (props.isOrg ? '65%' : '100%')};
   border-width: 1px;
@@ -27,5 +28,25 @@ export const Card = styled(({ isOrg, ...rest }) => <div {...rest} />)`
 
   ${CardTitle} {
     font-weight: ${props => (props.isOrg ? 'bold' : 'normal')};
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
+`
+
+export const StyledBadge = styled(Badge)`
+  & + & {
+    margin-left: 7px;
+  }
+`
+
+export const ReposContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+
+  @media screen and (max-width: 767px) {
+    flex-direction: column-reverse;
   }
 `

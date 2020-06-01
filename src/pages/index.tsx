@@ -5,67 +5,12 @@ import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Organization from '../components/organization'
 import Repos from '../components/repos'
+import { Organization as OrgType } from '../components/organization'
 
 interface DataProps {
   github: {
-    organization: {
-      avatarUrl: string,
-      description: string,
-      name: string,
-      url: string,
-      repositories: {
-        totalCount: number,
-        edges: [{
-          node: {
-            description: string,
-            id: string,
-            name: string,
-            url: string,
-            stargazers: {
-              totalCount: number,
-            },
-            pullRequests: {
-              totalCount: number,
-            },
-            issues: {
-              totalCount: number,
-            },
-            forkCount: number,
-            updatedAt: string,
-            primaryLanguage: {
-              color: string,
-              name: string,
-            },
-            licenseInfo: {
-              name: string,
-            },
-            isFork: boolean,
-            parent: {
-              name: string,
-              url: string,
-              owner: {
-                login: string,
-              },
-            },
-            repositoryTopics: {
-              nodes: [{
-                topic: {
-                  name: string,
-                },
-              }],
-            },
-            mentionableUsers: {
-              nodes: [{
-                id: string,
-                name: string,
-                avatarUrl: string,
-              }],
-            },
-          },
-        }],
-      },
-    },
-  },
+    organization: OrgType
+  };
 }
 
 interface ContextProps {
@@ -74,12 +19,11 @@ interface ContextProps {
 
 const IndexPage: React.FC<PageProps<DataProps, ContextProps>> = ({ data, pageContext }) => {
   const org = data.github.organization
-  console.log('org', org)
   return (
     <Layout org={org} buildDate={pageContext.currentDate}>
       <SEO title={`${org.name}'s repos`} />
       <Organization org={org} />
-      <Repos repos={org.repositories.edges.map(edge => edge.node)} />
+      <Repos repos={org.repositories!.edges.map(edge => edge.node)} />
     </Layout>
   )
 }
@@ -105,6 +49,7 @@ export const query = graphql`
                 nodes {
                   topic {
                     name
+                    id
                   }
                 }
               }

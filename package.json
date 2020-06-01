@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "github-repos",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Github repos listing from an organization",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Dan Rocha <drochag1@gmail.com>",
   "dependencies": {
     "@bootstrap-styled/v4": "^3.4.0",
     "gatsby": "^2.21.37",
@@ -16,12 +16,13 @@
     "gatsby-source-filesystem": "^2.3.4",
     "gatsby-source-graphql": "^2.5.2",
     "gatsby-transformer-sharp": "^2.5.2",
-    "node-fetch": "^2.6.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^6.0.0",
-    "styled-components": "^5.1.1"
+    "react-markdown": "^4.3.1",
+    "styled-components": "^5.1.1",
+    "textract": "^2.5.0"
   },
   "devDependencies": {
     "@types/styled-components": "^5.1.0",
@@ -42,9 +43,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/DanMMX/github-repos"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/DanMMX/github-repos/issues"
   }
 }

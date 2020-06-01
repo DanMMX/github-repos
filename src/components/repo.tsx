@@ -5,61 +5,64 @@ import {
   ListGroupItemHeading,
   ListGroupItemText,
 } from '@bootstrap-styled/v4'
+import { Link } from 'gatsby'
 import styled from 'styled-components'
 
 import { Dot, Law, Fork, Star, PR, Issue } from './icons'
+import { StyledBadge } from './common'
 
 export interface PrimaryLanguage {
-  color: string,
-  name: string,
+  color: string;
+  name: string;
 }
 
 export interface Topic {
   topic: {
-    name: string,
-  },
+    id: string;
+    name: string;
+  };
 }
 
 export interface User {
-  id: string,
-  name: string,
-  avatarUrl: string,
+  id: string;
+  name: string;
+  avatarUrl: string;
 }
 
 export interface Props {
-  description: string,
-  id: string,
-  name: string,
-  url: string,
+  description: string;
+  id: string;
+  name: string;
+  url: string;
   stargazers: {
-    totalCount: number,
-  },
-  forkCount: number,
-  updatedAt: string,
-  primaryLanguage: PrimaryLanguage,
+    totalCount: number;
+  };
+  forkCount: number;
+  updatedAt: string;
+  primaryLanguage: PrimaryLanguage;
   licenseInfo: {
-    name: string,
-  },
+    name: string;
+  };
   pullRequests: {
-    totalCount: number,
-  },
+    totalCount: number;
+  };
   issues: {
-    totalCount: number,
-  },
-  isFork: boolean,
+    totalCount: number;
+  };
+  isFork: boolean;
   parent: {
-    name: string,
-    url: string,
+    name: string;
+    url: string;
     owner: {
-      login: string,
-    },
-  },
+      login: string;
+    };
+  };
   repositoryTopics: {
-    nodes: Topic[],
-  },
+    nodes: Topic[];
+  };
   mentionableUsers: {
-    nodes: User[],
-  },
+    nodes: User[];
+  };
 }
 
 const StyledGroupItem = styled(ListGroupItem)`
@@ -99,7 +102,6 @@ const Repo: React.FC<Props> = ({
   name,
   primaryLanguage,
   description,
-  url,
   licenseInfo,
   forkCount,
   updatedAt,
@@ -108,12 +110,13 @@ const Repo: React.FC<Props> = ({
   stargazers,
   pullRequests,
   issues,
+  repositoryTopics
 }) => (
   <StyledGroupItem action>
-    <StyledListGroupItemHeading tag="a" href={url}>
+    <StyledListGroupItemHeading tag={Link} to={`/${name}`}>
       {name}
     </StyledListGroupItemHeading>
-    {(isFork || description) && (
+    {(isFork || description || (repositoryTopics && repositoryTopics.nodes.length)) && (
       <ListGroupItemText>
         {description}
         {isFork && (
@@ -122,6 +125,11 @@ const Repo: React.FC<Props> = ({
             <a href={parent.url} rel="noreferrer" target="_blank">
               {parent.owner.login}/{parent.name}
             </a>
+          </Small>
+        )}
+        {repositoryTopics && repositoryTopics.nodes.length && (
+          <Small>
+            {repositoryTopics.nodes.map((topic: Topic) => <StyledBadge key={topic.topic.id}>{topic.topic.name}</StyledBadge>)}
           </Small>
         )}
       </ListGroupItemText>

@@ -18,7 +18,6 @@ interface DataProps {
 
 const NotFoundPage: React.FC<PageProps<DataProps, ContextProps>> = props => {
   const org = props.data.github.organization
-  console.log('org', org)
   return (
       <Layout org={org} buildDate={props.pageContext.currentDate}>
       <SEO title="404: Not found" />

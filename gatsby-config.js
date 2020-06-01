@@ -1,5 +1,3 @@
-const fetch = require('node-fetch')
-
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -51,8 +49,6 @@ module.exports = {
           Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
           Accept: 'application/vnd.github.v4.idl',
         },
-        // Additional options to pass to node-fetch
-        fetchOptions: {},
       },
     },
   ],

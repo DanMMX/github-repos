@@ -2,24 +2,24 @@ import React from 'react'
 import { ListGroup } from '@bootstrap-styled/v4'
 import styled from 'styled-components'
 
-import { Props as RepoProps, PrimaryLanguage, Topic, User } from './repo'
+import { Props as RepoProps } from './repo'
 import Repo from './repo'
 import ExtraInfoCard from './extraInfoCard'
+import { ReposContainer } from './common'
 
 interface Props {
   repos: RepoProps[],
 }
-
-const ReposContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-`
 
 const ReposColumn = styled.div`
   width: 65%;
 
   & + & {
     width: 30%;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 100% !important;
   }
 `
 

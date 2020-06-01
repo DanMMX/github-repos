@@ -2,19 +2,25 @@ import React from 'react'
 import styled from 'styled-components'
 import { Github, Marker, Link as LinkIcon, Repo } from './icons'
 import { Card, CardText, CardTitle, CardBlock } from './common'
+import { Props as RepoProps } from './repo'
+
+export interface Organization {
+  name: string,
+  url: string,
+  avatarUrl: string,
+  description: string,
+  websiteUrl: string,
+  location: string,
+  repositories?: {
+    totalCount: number;
+    edges: [{
+      node: RepoProps
+    }];
+  };
+}
 
 interface Props {
-  org: {
-    name: string,
-    url: string,
-    avatarUrl: string,
-    description: string,
-    websiteUrl: string,
-    location: string,
-    repositories: {
-      totalCount: number,
-    },
-  }
+  org: Organization
 }
 
 const CardImg = styled.img`
@@ -63,9 +69,11 @@ const Organization: React.FC<Props> = ({
           <Marker />
           {location}
         </CardInfo>
-        <CardInfo>
-          <Repo /> {repositories.totalCount} Repositories
-        </CardInfo>
+        {repositories && (
+          <CardInfo>
+            <Repo /> {repositories.totalCount} Repositories
+          </CardInfo>
+        )}
         {websiteUrl && (
           <CardInfo as={Link} href={websiteUrl} target="_blank">
             <LinkIcon />
