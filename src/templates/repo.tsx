@@ -18,7 +18,7 @@ interface ContextProps {
 
 const RepoPage: React.FC<PageProps<{}, ContextProps>> = ({ pageContext }) => {
   const { organization, readme, repo } = pageContext
-  console.log(readme)
+
   return (
     <Layout org={organization} buildDate={pageContext.currentDate}>
       <SEO title={`${organization.name}'s repos`} />
