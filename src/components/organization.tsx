@@ -1,8 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
 import { Github, Marker, Link as LinkIcon, Repo } from './icons'
 import { Card, CardText, CardTitle, CardBlock } from './common'
+
+interface Props {
+  org: {
+    name: string,
+    url: string,
+    avatarUrl: string,
+    description: string,
+    websiteUrl: string,
+    location: string,
+    repositories: {
+      totalCount: number,
+    },
+  }
+}
 
 const CardImg = styled.img`
   width: 100px;
@@ -26,7 +39,7 @@ const Link = styled.a`
   color: black;
 `
 
-const Organization = ({
+const Organization: React.FC<Props> = ({
   org: {
     name,
     url,
@@ -38,7 +51,7 @@ const Organization = ({
   },
 }) => (
   <Card isOrg>
-    <CardImg top src={avatarUrl} alt={name} />
+    <CardImg src={avatarUrl} alt={name} />
     <CardBlock>
       <CardTitle>{name}</CardTitle>
       <CardSubtitle>
@@ -64,18 +77,5 @@ const Organization = ({
     </CardBlock>
   </Card>
 )
-
-Organization.propTypes = {
-  org: PropTypes.shape({
-    name: PropTypes.string,
-    url: PropTypes.string,
-    avatarUrl: PropTypes.string,
-    description: PropTypes.string,
-    location: PropTypes.string,
-    repositories: PropTypes.shape({
-      totalCount: PropTypes.number,
-    }),
-  }).isRequired,
-}
 
 export default Organization

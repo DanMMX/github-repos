@@ -1,9 +1,12 @@
 import { Link } from 'gatsby'
-import PropTypes from 'prop-types'
 import React from 'react'
 import { Navbar, Container, NavbarBrand } from '@bootstrap-styled/v4'
 
-const Header = ({ org }) => (
+interface Props {
+  org: string
+}
+
+const Header: React.FC<Props> = ({ org }) => (
   <Navbar light sticky>
     <Container>
       <div className="d-flex justify-content-between">
@@ -14,9 +17,5 @@ const Header = ({ org }) => (
     </Container>
   </Navbar>
 )
-
-Header.propTypes = {
-  org: PropTypes.string.isRequired,
-}
 
 export default Header

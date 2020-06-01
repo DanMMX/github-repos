@@ -1,10 +1,22 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { PageProps, graphql } from 'gatsby'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
-const NotFoundPage = props => {
+interface ContextProps {
+  currentDate: string
+}
+
+interface DataProps {
+  github: {
+    organization: {
+      name: string
+    }
+  }
+}
+
+const NotFoundPage: React.FC<PageProps<DataProps, ContextProps>> = props => {
   const org = props.data.github.organization
   console.log('org', org)
   return (
@@ -14,19 +26,6 @@ const NotFoundPage = props => {
       <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
     </Layout>
   )
-}
-
-NotFoundPage.propTypes = {
-  pageContext: PropTypes.shape({
-    currentDate: PropTypes.string
-  }),
-  data: PropTypes.shape({
-    github: PropTypes.shape({
-      organization: PropTypes.shape({
-        name: PropTypes.string,
-      }).isRequired,
-    }),
-  }),
 }
 
 export const query = graphql`

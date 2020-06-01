@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import {
   ListGroup,
   ListGroupItem,
@@ -9,6 +8,59 @@ import {
 import styled from 'styled-components'
 
 import { Dot, Law, Fork, Star, PR, Issue } from './icons'
+
+export interface PrimaryLanguage {
+  color: string,
+  name: string,
+}
+
+export interface Topic {
+  topic: {
+    name: string,
+  },
+}
+
+export interface User {
+  id: string,
+  name: string,
+  avatarUrl: string,
+}
+
+export interface Props {
+  description: string,
+  id: string,
+  name: string,
+  url: string,
+  stargazers: {
+    totalCount: number,
+  },
+  forkCount: number,
+  updatedAt: string,
+  primaryLanguage: PrimaryLanguage,
+  licenseInfo: {
+    name: string,
+  },
+  pullRequests: {
+    totalCount: number,
+  },
+  issues: {
+    totalCount: number,
+  },
+  isFork: boolean,
+  parent: {
+    name: string,
+    url: string,
+    owner: {
+      login: string,
+    },
+  },
+  repositoryTopics: {
+    nodes: Topic[],
+  },
+  mentionableUsers: {
+    nodes: User[],
+  },
+}
 
 const StyledGroupItem = styled(ListGroupItem)`
   text-decoration: none;
@@ -43,7 +95,7 @@ const Small = styled.span`
   }
 `
 
-const Repo = ({
+const Repo: React.FC<Props> = ({
   name,
   primaryLanguage,
   description,
@@ -101,56 +153,5 @@ const Repo = ({
     </ListGroupItemText>
   </StyledGroupItem>
 )
-
-Repo.propTypes = {
-  description: PropTypes.string,
-  id: PropTypes.string,
-  name: PropTypes.string,
-  url: PropTypes.string,
-  stargazers: PropTypes.shape({
-    totalCount: PropTypes.number,
-  }),
-  forkCount: PropTypes.number,
-  updatedAt: PropTypes.string,
-  primaryLanguage: PropTypes.shape({
-    color: PropTypes.string,
-    name: PropTypes.string,
-  }),
-  licenseInfo: PropTypes.shape({
-    name: PropTypes.string,
-  }),
-  pullRequests: PropTypes.shape({
-    totalCount: PropTypes.number,
-  }),
-  issues: PropTypes.shape({
-    totalCount: PropTypes.number,
-  }),
-  isFork: PropTypes.bool,
-  parent: PropTypes.shape({
-    name: PropTypes.string,
-    url: PropTypes.string,
-    owner: PropTypes.shape({
-      login: PropTypes.string,
-    }),
-  }),
-  repositoryTopics: PropTypes.shape({
-    nodes: PropTypes.arrayOf(
-      PropTypes.shape({
-        topic: PropTypes.shape({
-          name: PropTypes.string,
-        }),
-      }),
-    ),
-  }),
-  mentionableUsers: PropTypes.shape({
-    nodes: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string,
-        name: PropTypes.string,
-        avatarUrl: PropTypes.string,
-      }),
-    ),
-  }),
-}
 
 export default Repo

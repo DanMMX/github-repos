@@ -1,10 +1,16 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Container } from '@bootstrap-styled/v4'
 
 import Header from './header'
 
-const Layout = ({ children, org, buildDate }) => (
+interface Props {
+  org: {
+    name: string
+  },
+  buildDate: string
+}
+
+const Layout: React.FC<Props> = ({ children, org, buildDate }) => (
   <div style={{ fontFamily: 'Lato' }}>
     <Header org={org.name} />
     <Container>
@@ -19,13 +25,5 @@ const Layout = ({ children, org, buildDate }) => (
     </Container>
   </div>
 )
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-  org: PropTypes.shape({
-    name: PropTypes.string,
-  }).isRequired,
-  buildDate: PropTypes.string.isRequired,
-}
 
 export default Layout

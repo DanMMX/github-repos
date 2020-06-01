@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const SVG = styled.svg`
+const SVG = styled.svg<{}>`
   width: 16px;
   height: 16px;
   vertical-align: text-top;
   margin-right: 4px;
 `
 
-export const Star = () => (
+export const Star: React.FC<{}> = () => (
   <SVG
     aria-hidden="true"
     role="img"
@@ -22,7 +22,7 @@ export const Star = () => (
   </SVG>
 )
 
-export const Users = () => (
+export const Users: React.FC<{}> = () => (
   <SVG
     aria-hidden="true"
     role="img"
@@ -36,7 +36,7 @@ export const Users = () => (
   </SVG>
 )
 
-export const Github = () => (
+export const Github: React.FC<{}> = () => (
   <SVG
     aria-hidden="true"
     role="img"
@@ -50,7 +50,7 @@ export const Github = () => (
   </SVG>
 )
 
-export const Marker = () => (
+export const Marker: React.FC<{}> = () => (
   <SVG
     aria-hidden="true"
     role="img"
@@ -64,7 +64,7 @@ export const Marker = () => (
   </SVG>
 )
 
-export const Link = () => (
+export const Link: React.FC<{}> = () => (
   <SVG
     aria-hidden="true"
     role="img"
@@ -78,7 +78,7 @@ export const Link = () => (
   </SVG>
 )
 
-export const Repo = () => (
+export const Repo: React.FC<{}> = () => (
   <SVG
     viewBox="0 0 16 16"
     version="1.1"
@@ -94,7 +94,7 @@ export const Repo = () => (
   </SVG>
 )
 
-export const Law = () => (
+export const Law: React.FC<{}> = () => (
   <SVG viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true">
     <path
       fillRule="evenodd"
@@ -104,7 +104,7 @@ export const Law = () => (
   </SVG>
 )
 
-export const Fork = () => (
+export const Fork: React.FC<{}> = () => (
   <SVG
     aria-label="fork"
     viewBox="0 0 16 16"
@@ -120,7 +120,7 @@ export const Fork = () => (
   </SVG>
 )
 
-export const PR = () => (
+export const PR: React.FC<{}> = () => (
   <SVG
     height="16"
     viewBox="0 0 16 16"
@@ -136,7 +136,7 @@ export const PR = () => (
   </SVG>
 )
 
-export const Issue = () => (
+export const Issue: React.FC<{}> = () => (
   <SVG
     height="16"
     viewBox="0 0 16 16"
@@ -152,7 +152,7 @@ export const Issue = () => (
   </SVG>
 )
 
-export const Dot = styled.span`
+export const Dot = styled.span<{ color: string }>`
   position: relative;
   top: 1px;
   display: inline-block;
