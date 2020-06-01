@@ -1,11 +1,8 @@
-import React from "react"
-import PropTypes from "prop-types"
-import {
-  Container,
-} from '@bootstrap-styled/v4';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Container } from '@bootstrap-styled/v4'
 
-
-import Header from "./header"
+import Header from './header'
 
 const Layout = ({ children, org, buildDate }) => (
   <div style={{ fontFamily: 'Lato' }}>

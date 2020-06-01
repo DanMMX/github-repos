@@ -13,7 +13,7 @@ const ExtraInfoCard = ({ title }) => (
 )
 
 ExtraInfoCard.propTypes = {
-  title: PropTypes.string
+  title: PropTypes.string,
 }
 
 export default ExtraInfoCard

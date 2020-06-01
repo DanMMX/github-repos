@@ -1,14 +1,15 @@
-import React from "react"
+import React from 'react'
 import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from '../components/layout'
+import SEO from '../components/seo'
 import Organization from '../components/organization'
 import Repos from '../components/repos'
 
 const IndexPage = props => {
   const org = props.data.github.organization
+  console.log('org', org)
   return (
     <Layout org={org} buildDate={props.pageContext.currentDate}>
       <SEO title={`${org.name}'s repos`} />
@@ -19,6 +20,9 @@ const IndexPage = props => {
 }
 
 IndexPage.propTypes = {
+  pageContext: PropTypes.shape({
+    currentDate: PropTypes.string
+  }),
   data: PropTypes.shape({
     github: PropTypes.shape({
       organization: PropTypes.shape({
@@ -28,71 +32,77 @@ IndexPage.propTypes = {
         url: PropTypes.string,
         repositories: PropTypes.shape({
           totalCount: PropTypes.number,
-          edges: PropTypes.arrayOf(PropTypes.shape({
-            node: PropTypes.shape({
-              description: PropTypes.string,
-              id: PropTypes.string,
-              name: PropTypes.string,
-              url: PropTypes.string,
-              stargazers: PropTypes.shape({
-                totalCount: PropTypes.number
-              }),
-              pullRequests: PropTypes.shape({
-                totalCount: PropTypes.number
-              }),
-              issues: PropTypes.shape({
-                totalCount: PropTypes.number
-              }),
-              forkCount: PropTypes.number,
-              updatedAt: PropTypes.string,
-              primaryLanguage: PropTypes.shape({
-                color: PropTypes.string,
-                name: PropTypes.string
-              }),
-              licenseInfo: PropTypes.shape({
-                name: PropTypes.string
-              }),
-              isFork: PropTypes.bool,
-              parent: PropTypes.shape({
+          edges: PropTypes.arrayOf(
+            PropTypes.shape({
+              node: PropTypes.shape({
+                description: PropTypes.string,
+                id: PropTypes.string,
                 name: PropTypes.string,
                 url: PropTypes.string,
-                owner: PropTypes.shape({
-                  login: PropTypes.string
-                })
-              }),
-              repositoryTopics: PropTypes.shape({
-                nodes: PropTypes.arrayOf(PropTypes.shape({
-                  topic: PropTypes.shape({
-                    name: PropTypes.string
-                  })
-                }))
-              }),
-              mentionableUsers: PropTypes.shape({
-                nodes: PropTypes.arrayOf(PropTypes.shape({
-                  id: PropTypes.string,
+                stargazers: PropTypes.shape({
+                  totalCount: PropTypes.number,
+                }),
+                pullRequests: PropTypes.shape({
+                  totalCount: PropTypes.number,
+                }),
+                issues: PropTypes.shape({
+                  totalCount: PropTypes.number,
+                }),
+                forkCount: PropTypes.number,
+                updatedAt: PropTypes.string,
+                primaryLanguage: PropTypes.shape({
+                  color: PropTypes.string,
                   name: PropTypes.string,
-                  avatarUrl: PropTypes.string,
-                }))
-              })
-            })
-          }))
+                }),
+                licenseInfo: PropTypes.shape({
+                  name: PropTypes.string,
+                }),
+                isFork: PropTypes.bool,
+                parent: PropTypes.shape({
+                  name: PropTypes.string,
+                  url: PropTypes.string,
+                  owner: PropTypes.shape({
+                    login: PropTypes.string,
+                  }),
+                }),
+                repositoryTopics: PropTypes.shape({
+                  nodes: PropTypes.arrayOf(
+                    PropTypes.shape({
+                      topic: PropTypes.shape({
+                        name: PropTypes.string,
+                      }),
+                    }),
+                  ),
+                }),
+                mentionableUsers: PropTypes.shape({
+                  nodes: PropTypes.arrayOf(
+                    PropTypes.shape({
+                      id: PropTypes.string,
+                      name: PropTypes.string,
+                      avatarUrl: PropTypes.string,
+                    }),
+                  ),
+                }),
+              }),
+            }),
+          ),
         }),
       }).isRequired,
-    })
-  })
+    }),
+  }),
 }
 
 export const query = graphql`
-  query OrgQuery($org: String!) {
+  query ($org: String!) {
     github {
-      organization (login: $org) {
+      organization(login: $org) {
         name
         description
         avatarUrl
         url
         location
         websiteUrl
-        repositories (first: 100) {
+        repositories(first: 100) {
           totalCount
           edges {
             node {
@@ -137,7 +147,7 @@ export const query = graphql`
               }
               description
               url
-              stargazers (first: 1) {
+              stargazers(first: 1) {
                 totalCount
               }
             }

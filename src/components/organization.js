@@ -19,7 +19,7 @@ const CardInfo = styled.span`
   display: inline-block;
   text-decoration: none;
   margin-bottom: 10px;
-  `
+`
 
 const Link = styled.a`
   text-decoration: none;
@@ -35,17 +35,30 @@ const Organization = ({
     description,
     location,
     repositories,
-  }
+  },
 }) => (
   <Card isOrg>
     <CardImg top src={avatarUrl} alt={name} />
     <CardBlock>
       <CardTitle>{name}</CardTitle>
       <CardSubtitle>
-        <CardInfo as={Link} href={url} target="_blank"><Github />{url}</CardInfo>
-        <CardInfo><Marker />{location}</CardInfo>
-        <CardInfo><Repo /> {repositories.totalCount} Repositories</CardInfo>
-        {websiteUrl && <CardInfo as={Link} href={websiteUrl} target="_blank"><LinkIcon />{websiteUrl}</CardInfo>}
+        <CardInfo as={Link} href={url} target="_blank">
+          <Github />
+          {url}
+        </CardInfo>
+        <CardInfo>
+          <Marker />
+          {location}
+        </CardInfo>
+        <CardInfo>
+          <Repo /> {repositories.totalCount} Repositories
+        </CardInfo>
+        {websiteUrl && (
+          <CardInfo as={Link} href={websiteUrl} target="_blank">
+            <LinkIcon />
+            {websiteUrl}
+          </CardInfo>
+        )}
       </CardSubtitle>
       <CardText>{description}</CardText>
     </CardBlock>
@@ -60,9 +73,9 @@ Organization.propTypes = {
     description: PropTypes.string,
     location: PropTypes.string,
     repositories: PropTypes.shape({
-      totalCount: PropTypes.number
-    })
-  }).isRequired
+      totalCount: PropTypes.number,
+    }),
+  }).isRequired,
 }
 
 export default Organization

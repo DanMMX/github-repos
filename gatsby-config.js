@@ -36,17 +36,17 @@ module.exports = {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [
-          `lato\:300,400,400i,700` // you can also specify font weights and styles
+          `lato\:300,400,400i,700`, // you can also specify font weights and styles
         ],
-        display: 'swap'
-      }
+        display: 'swap',
+      },
     },
     {
-      resolve: "gatsby-source-graphql",
+      resolve: 'gatsby-source-graphql',
       options: {
-        typeName: "GitHub",
-        fieldName: "github",
-        url: "https://api.github.com/graphql",
+        typeName: 'GitHub',
+        fieldName: 'github',
+        url: 'https://api.github.com/graphql',
         headers: {
           Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
           Accept: 'application/vnd.github.v4.idl',
@@ -54,6 +54,6 @@ module.exports = {
         // Additional options to pass to node-fetch
         fetchOptions: {},
       },
-    }
+    },
   ],
 }

@@ -4,8 +4,8 @@ import {
   ListGroup,
   ListGroupItem,
   ListGroupItemHeading,
-  ListGroupItemText
-} from '@bootstrap-styled/v4';
+  ListGroupItemText,
+} from '@bootstrap-styled/v4'
 import styled from 'styled-components'
 
 import { Dot, Law, Fork, Star, PR, Issue } from './icons'
@@ -28,12 +28,12 @@ const StyledListGroupItemHeading = styled(ListGroupItemHeading)`
 
 const RepoInfo = styled.span`
   display: inline-block;
-  font-size: .9rem;
+  font-size: 0.9rem;
   margin-right: 15px;
 `
 
 const Small = styled.span`
-  font-size: .75rem;
+  font-size: 0.75rem;
   display: block;
   color: black;
   margin-top: 5px;
@@ -58,12 +58,19 @@ const Repo = ({
   issues,
 }) => (
   <StyledGroupItem action>
-    <StyledListGroupItemHeading tag="a" href={url}>{name}</StyledListGroupItemHeading>
+    <StyledListGroupItemHeading tag="a" href={url}>
+      {name}
+    </StyledListGroupItemHeading>
     {(isFork || description) && (
       <ListGroupItemText>
         {description}
         {isFork && (
-          <Small>Forked from <a href={parent.url} rel="noreferrer" target="_blank">{parent.owner.login}/{parent.name}</a></Small>
+          <Small>
+            Forked from{' '}
+            <a href={parent.url} rel="noreferrer" target="_blank">
+              {parent.owner.login}/{parent.name}
+            </a>
+          </Small>
         )}
       </ListGroupItemText>
     )}
@@ -90,9 +97,7 @@ const Repo = ({
       <RepoInfo>
         <Star /> {stargazers.totalCount}
       </RepoInfo>
-      <RepoInfo>
-        Updated at {(new Date(updatedAt)).toDateString()}
-      </RepoInfo>
+      <RepoInfo>Updated at {new Date(updatedAt).toDateString()}</RepoInfo>
     </ListGroupItemText>
   </StyledGroupItem>
 )
@@ -103,45 +108,49 @@ Repo.propTypes = {
   name: PropTypes.string,
   url: PropTypes.string,
   stargazers: PropTypes.shape({
-    totalCount: PropTypes.number
+    totalCount: PropTypes.number,
   }),
   forkCount: PropTypes.number,
   updatedAt: PropTypes.string,
   primaryLanguage: PropTypes.shape({
     color: PropTypes.string,
-    name: PropTypes.string
+    name: PropTypes.string,
   }),
   licenseInfo: PropTypes.shape({
-    name: PropTypes.string
+    name: PropTypes.string,
   }),
   pullRequests: PropTypes.shape({
-    totalCount: PropTypes.number
+    totalCount: PropTypes.number,
   }),
   issues: PropTypes.shape({
-    totalCount: PropTypes.number
+    totalCount: PropTypes.number,
   }),
   isFork: PropTypes.bool,
   parent: PropTypes.shape({
     name: PropTypes.string,
     url: PropTypes.string,
     owner: PropTypes.shape({
-      login: PropTypes.string
-    })
+      login: PropTypes.string,
+    }),
   }),
   repositoryTopics: PropTypes.shape({
-    nodes: PropTypes.arrayOf(PropTypes.shape({
-      topic: PropTypes.shape({
-        name: PropTypes.string
-      })
-    }))
+    nodes: PropTypes.arrayOf(
+      PropTypes.shape({
+        topic: PropTypes.shape({
+          name: PropTypes.string,
+        }),
+      }),
+    ),
   }),
   mentionableUsers: PropTypes.shape({
-    nodes: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      avatarUrl: PropTypes.string,
-    }))
-  })
+    nodes: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string,
+        name: PropTypes.string,
+        avatarUrl: PropTypes.string,
+      }),
+    ),
+  }),
 }
 
 export default Repo
