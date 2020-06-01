@@ -33,3 +33,10 @@ This project depends of 2 environment variables:
 
 1. GITHUB_TOKEN: Get a Github token [here](https://github.com/settings/tokens/new) to use the Github GraphQL API
 1. GATSBY_GITHUB_ORG: Name a Github organization to query from Github, for example for [Microsoft](https://github.com/microsoft/) it would be just `microsoft`
+
+It will create a homepage for the organization with 100 of its repos and a static page for each of them to be generated on deploy time.
+
+## 📝 TODO
+
+1. Pagination: This project queries the first 100 repos of an organization, when there are more it won't work properly.
+1. Regular updates: When the project gets deployed, it fetches all the information (that's why the date of update is on the page). It would be nice to have regular and programmed updates, maybe once a day.
